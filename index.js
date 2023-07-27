@@ -1,24 +1,8 @@
-const express = require(`express`);
+const http = require(`http`);
+const app = require(`./app`);
 
-const bodyParser = require(`body-parser`);
+app.set(`port`, process.env.PORT ?? 3000);
 
-const app = express();
+const server = http.createServer(app);
 
-const port = 3000;
-
-app.use(bodyParser.json());
-
-//Creating a Route for the API
-let todos =[
-  {id:1, title:`Todo 1`},
-  {id:2, title:`Todo 2`},
-  {id:3, title:`Todo 3`},
-]
-
-app.get(`/todos`, (req,res)=>{
-  res.json(todos);
-})
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
-})
+server.listen(process.env.PORT ?? 3000);

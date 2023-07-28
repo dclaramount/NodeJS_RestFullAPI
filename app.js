@@ -7,8 +7,8 @@ const dbConnect = require(`./db/dbConnect`);
 
 dbConnect()
 const newUser = new User({
-  email: `john@example.com`,
-  password: `string123`
+  email: `john2@example.com`,
+  password: `string12345`
 })
 
 newUser.save()
@@ -26,5 +26,20 @@ User.find({email: `john@example.com`})
   .catch((error) => {
     console.log(`Error finding users ${error}`)
   })
+/*
+User.updateOne({email:`john2@example.com`}, {password:`newpassword123`})
+  .then(()=>{
+    console.log(`Succesfully updated user`)
+  })
+  .catch((error) => {
+    console.log(`An error updating user with error ${error}`)
+  })*/
 
+User.updateMany({email:`john2@example.com`}, {$set:{passowd: `newpassword123`}})
+  .then((result)=>{
+    console.log(`Document updated:`, result)
+  })
+  .catch((error) => {
+    console.log(`An error updating user with error ${error}`)
+  })
 module.exports = app;

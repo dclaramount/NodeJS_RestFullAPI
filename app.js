@@ -17,6 +17,14 @@ newUser.save()
   })
   .catch((error) => {
     console.log(`There was an error inserting a field with error ${error}`)
+  }) 
+
+User.find({email: `john@example.com`})
+  .then((users) => {
+    console.log(`User found: ${users}`)
+  })
+  .catch((error) => {
+    console.log(`Error finding users ${error}`)
   })
 
 module.exports = app;

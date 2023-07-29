@@ -7,11 +7,11 @@ const dbConnect = require(`./db/dbConnect`);
 
 dbConnect()
 const newUser = new User({
-  email: `john2@example.com`,
+  email: `john@example.com`,
   password: `string12345`
 })
 
-newUser.save()
+/* newUser.save()
   .then(() => {
     console.log(`User inserted succesfully`)
   })
@@ -25,7 +25,7 @@ User.find({email: `john@example.com`})
   })
   .catch((error) => {
     console.log(`Error finding users ${error}`)
-  })
+  }) */
 /*
 User.updateOne({email:`john2@example.com`}, {password:`newpassword123`})
   .then(()=>{
@@ -43,14 +43,14 @@ User.updateOne({email:`john2@example.com`}, {password:`newpassword123`})
     console.log(`An error updating user with error ${error}`)
   }) */
 
-User.deleteOne({email:`john2@example.com`})
+/* User.deleteOne({email:`john2@example.com`})
   .then(()=>{
     console.log(`User deleted succesfully`);
   })
   .catch((error) =>{
     console.log(`Error deleting user: ${error}`)
   })
-
+ */
 /* User.deleteMany({isActive: false})
 .then(()=>{
   console.log(`Users deleted succesfully`);
@@ -59,4 +59,13 @@ User.deleteOne({email:`john2@example.com`})
   console.log(`Error deleting users: ${error}`)
 }) */
 
+User.collection.createIndex({email:5});
+User.find({email: `john@example.com`}).select({email: 5, _id:0})
+  .then((users) => {
+    console.log(`Users found`);
+    console.log(users);
+  })
+  .catch((error) => {
+    console.log(`Error finding users ${error}`);
+  })
 module.exports = app;
